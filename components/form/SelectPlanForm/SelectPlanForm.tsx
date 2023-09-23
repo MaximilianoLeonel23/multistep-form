@@ -16,7 +16,6 @@ const SelectPlanForm: React.FC = () => {
 	};
 
 	const handlePlansForm = () => {
-		console.log(durationOfPlan, typeOfPlan);
 		if (durationOfPlan && typeOfPlan) {
 			setCurrentStep(2);
 		}
@@ -73,13 +72,13 @@ const SelectPlanForm: React.FC = () => {
 							return;
 						}
 					}}
-					className='bg-none border-none text-neutro-cool-gray font-medium'
+					className='bg-none border-none text-neutro-cool-gray hover:text-primary-marine-blue font-medium'
 				>
 					Go back
 				</button>
 				<button
 					onClick={handlePlansForm}
-					className=' bg-primary-marine-blue text-white py-3 px-6 rounded-lg w-fit font-medium'
+					className=' bg-primary-marine-blue text-white py-2 px-6 rounded-lg w-fit font-medium'
 				>
 					Next Step
 				</button>

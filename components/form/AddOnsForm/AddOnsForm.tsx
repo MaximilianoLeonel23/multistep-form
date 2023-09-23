@@ -2,17 +2,25 @@ import { useFormSteps, useFormStore } from '@/store/useFormStore';
 import React from 'react';
 import { addons } from './addons';
 import AddOnCard from './AddOnCard';
+import { AddOn } from '@/types/types';
 const AddOnsForm = () => {
 	const { currentStep, setCurrentStep } = useFormSteps();
 	const { durationOfPlan, addOns, setAddOns } = useFormStore();
 
-	const handleAddOns = (id: string) => {
-		const foundAddOn = addOns.includes(id);
+	const handleAddOns = (addOn: AddOn) => {
+		const foundAddOn = addOns.some(existingAddOn => existingAddOn.id === addOn.id);
+		console.log(foundAddOn);
 		if (!foundAddOn) {
-			setAddOns([...addOns, id]);
+			setAddOns([...addOns, addOn]);
 		} else {
-			const updatedAddOns = addOns.filter(addOn => addOn !== id);
+			const updatedAddOns = addOns.filter(existingAddOn => existingAddOn.id !== addOn.id);
 			setAddOns(updatedAddOns);
+		}
+	};
+
+	const handleAddOnsForm = () => {
+		if (durationOfPlan && addOns.length >= 0) {
+			setCurrentStep(3);
 		}
 	};
 	return (
@@ -45,13 +53,13 @@ const AddOnsForm = () => {
 							return;
 						}
 					}}
-					className='bg-none border-none text-neutro-cool-gray font-medium'
+					className='bg-none border-none text-neutro-cool-gray hover:text-primary-marine-blue font-medium'
 				>
 					Go back
 				</button>
 				<button
-					onClick={() => setCurrentStep(3)}
-					className='bg-primary-marine-blue text-white py-3 px-6 rounded-lg w-fit font-medium'
+					onClick={handleAddOnsForm}
+					className='bg-primary-marine-blue text-white py-2 px-6 rounded-lg w-fit font-medium'
 				>
 					Next Step
 				</button>

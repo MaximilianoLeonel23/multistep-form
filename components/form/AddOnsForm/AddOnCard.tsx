@@ -5,23 +5,26 @@ import React from 'react';
 interface Props {
 	addOn: AddOn;
 	durationOfPlan: string;
-	handleAddOns: (id: string) => void;
+	handleAddOns: (addOn: AddOn) => void;
 }
 const AddOnCard: React.FC<Props> = ({ addOn, durationOfPlan, handleAddOns }) => {
 	const { label, description, pricePerMonth, pricePerYear, id } = addOn;
 	const { addOns } = useFormStore();
+
+	const isChecked = addOns.some(addOn => addOn.id === id);
+
 	return (
 		<article
-			onClick={() => handleAddOns(id)}
+			onClick={() => handleAddOns(addOn)}
 			className={`flex items-center justify-between px-4 py-4 border  ${
-				addOns.includes(id)
+				isChecked
 					? 'bg-neutro-alabaster border-primary-purplish-blue'
 					: 'bg-none border-neutro-light-gray'
 			}  hover:border-primary-purplish-blue rounded-lg cursor-pointer`}
 		>
 			<div className='flex items-center gap-4'>
 				<input
-					checked={addOns.includes(id)}
+					checked={isChecked}
 					type='checkbox'
 					value={id}
 					className='w-4 h-4 rounded-sm border border-neutro-light-gray checked:text-primary-purplish-blue focus:ring-0'
@@ -32,7 +35,7 @@ const AddOnCard: React.FC<Props> = ({ addOn, durationOfPlan, handleAddOns }) => 
 				</div>
 			</div>
 			<span className='text-primary-purplish-blue text-xs'>
-				{durationOfPlan === 'monthly' ? pricePerMonth : pricePerYear}
+				{durationOfPlan === 'monthly' ? `+$${pricePerMonth}/mo` : `+$${pricePerYear}/yr`}
 			</span>
 		</article>
 	);

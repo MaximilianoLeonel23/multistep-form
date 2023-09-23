@@ -1,18 +1,19 @@
+import { AddOn, Plan } from '@/types/types';
 import { create } from 'zustand';
 
 interface FormStore {
 	name: string;
 	email: string;
 	phone: string;
-	typeOfPlan: string;
+	typeOfPlan: Plan;
 	durationOfPlan: string;
-	addOns: string[];
+	addOns: AddOn[];
 	setName: (newName: string) => void;
 	setEmail: (newEmail: string) => void;
 	setPhone: (newPhone: string) => void;
-	setTypeOfPlan: (newTypeOfPlan: string) => void;
+	setTypeOfPlan: (newTypeOfPlan: Plan) => void;
 	setDurationOfPlan: (newDurationOfPlan: string) => void;
-	setAddOns: (newAddOns: string[]) => void;
+	setAddOns: (newAddOns: AddOn[]) => void;
 }
 
 export const useFormStore = create<FormStore>(set => {
@@ -20,15 +21,15 @@ export const useFormStore = create<FormStore>(set => {
 		name: '',
 		email: '',
 		phone: '',
-		typeOfPlan: 'arcade',
+		typeOfPlan: { label: '', pricePerMonth: 0, pricePerYear: 0, id: '', icon: '' },
 		durationOfPlan: 'monthly',
 		addOns: [],
 		setName: (newName: string) => set({ name: newName }),
 		setEmail: (newEmail: string) => set({ email: newEmail }),
 		setPhone: (newPhone: string) => set({ phone: newPhone }),
-		setTypeOfPlan: (newTypeOfPlan: string) => set({ typeOfPlan: newTypeOfPlan }),
+		setTypeOfPlan: (newTypeOfPlan: Plan) => set({ typeOfPlan: newTypeOfPlan }),
 		setDurationOfPlan: (newDurationOfPlan: string) => set({ durationOfPlan: newDurationOfPlan }),
-		setAddOns: (newAddOns: string[]) => set({ addOns: newAddOns }),
+		setAddOns: (newAddOns: AddOn[]) => set({ addOns: newAddOns }),
 	};
 });
 

@@ -15,6 +15,11 @@ const SummaryForm = () => {
 		return;
 	};
 
+	const totalBilling =
+		durationOfPlan === 'monthly'
+			? typeOfPlan.pricePerMonth + addOns.reduce((acc, addOn) => acc + addOn.pricePerMonth, 0)
+			: typeOfPlan.pricePerYear + addOns.reduce((acc, addOn) => acc + addOn.pricePerYear, 0);
+
 	if (successful) return <Successful />;
 
 	return (
@@ -29,7 +34,10 @@ const SummaryForm = () => {
 				<div className='flex flex-col gap-4 bg-neutro-magnolia rounded-lg p-6'>
 					<div className='flex items-center justify-between'>
 						<div className='flex flex-col gap-1'>
-							<h4 className='text-primary-marine-blue font-semibold'>Arcade (Monthly)</h4>
+							<h4 className='text-primary-marine-blue font-semibold'>
+								{typeOfPlan.label.charAt(0).toUpperCase() + typeOfPlan.label.slice(1)} (
+								{durationOfPlan.charAt(0).toUpperCase() + durationOfPlan.slice(1)})
+							</h4>
 							<button
 								onClick={() => setCurrentStep(1)}
 								className='w-fit text-neutro-cool-gray hover:text-primary-purplish-blue text-sm underline'
@@ -37,21 +45,35 @@ const SummaryForm = () => {
 								Change
 							</button>
 						</div>
-						<span className='text-primary-marine-blue font-semibold'>$9/mo</span>
+						<span className='text-primary-marine-blue font-semibold'>
+							$
+							{durationOfPlan === 'monthly'
+								? `${typeOfPlan.pricePerMonth}/mo`
+								: `${typeOfPlan.pricePerYear}/yr`}
+						</span>
 					</div>
-					<div className='h-px w-full bg-neutro-light-gray'></div>
-					<div className='flex items-center justify-between'>
-						<p className='text-neutro-cool-gray text-sm'>Online service</p>
-						<span className='text-primary-marine-blue text-sm'>+$1/mo</span>
-					</div>
-					<div className='flex items-center justify-between'>
-						<p className='text-neutro-cool-gray text-sm'>Larger storage</p>
-						<span className='text-primary-marine-blue text-sm'>+$2/mo</span>
-					</div>
+					{addOns.length > 0 && (
+						<>
+							<div className='h-px w-full bg-neutro-light-gray'></div>
+							{addOns.map((addOn, idx) => {
+								return (
+									<div key={idx} className='flex items-center justify-between'>
+										<p className='text-neutro-cool-gray text-sm'>{addOn.label}</p>
+										<span className='text-primary-marine-blue text-sm'>
+											+$
+											{durationOfPlan === 'monthly' ? `${addOn.pricePerMonth}/mo` : `${addOn.pricePerYear}/yr`}
+										</span>
+									</div>
+								);
+							})}
+						</>
+					)}
 				</div>
 				<div className='flex items-center justify-between px-6'>
-					<p className='text-neutro-cool-gray text-sm'>Total (per month)</p>
-					<span className='text-primary-purplish-blue font-bold'>+$12/mo</span>
+					<p className='text-neutro-cool-gray text-sm'>
+						Total ({durationOfPlan === 'monthly' ? 'per month' : 'per year'})
+					</p>
+					<span className='text-primary-purplish-blue font-bold'>+${totalBilling}/mo</span>
 				</div>
 			</div>
 
@@ -64,7 +86,7 @@ const SummaryForm = () => {
 							return;
 						}
 					}}
-					className='bg-none border-none text-neutro-cool-gray font-medium'
+					className='bg-none border-none text-neutro-cool-gray hover:text-primary-marine-blue font-medium'
 				>
 					Go back
 				</button>

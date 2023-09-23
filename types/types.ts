@@ -1,7 +1,7 @@
 export interface Plan {
 	label: string;
-	pricePerMonth: string;
-	pricePerYear: string;
+	pricePerMonth: number;
+	pricePerYear: number;
 	icon: string;
 	id: string;
 }
@@ -9,7 +9,7 @@ export interface Plan {
 export interface AddOn {
 	label: string;
 	description: string;
-	pricePerMonth: string;
-	pricePerYear: string;
+	pricePerMonth: number;
+	pricePerYear: number;
 	id: string;
 }

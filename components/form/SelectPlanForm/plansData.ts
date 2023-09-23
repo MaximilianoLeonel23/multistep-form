@@ -6,22 +6,22 @@ import { Plan } from '@/types/types';
 export const plans: Plan[] = [
 	{
 		label: 'Arcade',
-		pricePerMonth: '$9/mo',
-		pricePerYear: '$90/yr',
+		pricePerMonth: 9,
+		pricePerYear: 90,
 		icon: arcadeIcon,
 		id: 'arcade',
 	},
 	{
 		label: 'Advanced',
-		pricePerMonth: '$12/mo',
-		pricePerYear: '$120/yr',
+		pricePerMonth: 12,
+		pricePerYear: 120,
 		icon: advancedIcon,
 		id: 'advaced',
 	},
 	{
 		label: 'Pro',
-		pricePerMonth: '$15/mo',
-		pricePerYear: '$150/yr',
+		pricePerMonth: 15,
+		pricePerYear: 150,
 		icon: proIcon,
 		id: 'pro',
 	},

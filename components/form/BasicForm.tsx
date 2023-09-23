@@ -6,10 +6,8 @@ const BasicForm = () => {
 	const { name, email, phone, setName, setEmail, setPhone } = useFormStore();
 	const { currentStep, setCurrentStep } = useFormSteps();
 	const handleBasicData = () => {
-		console.log({ name, email, phone });
 		if (name && email && phone) {
 			setCurrentStep(currentStep + 1);
-			console.log(currentStep);
 		}
 	};
 	return (
@@ -72,7 +70,7 @@ const BasicForm = () => {
 			<div className='flex justify-end'>
 				<button
 					onClick={handleBasicData}
-					className=' bg-primary-marine-blue text-white py-3 px-6 rounded-lg w-fit'
+					className=' bg-primary-marine-blue text-white py-2 px-6 rounded-lg w-fit'
 				>
 					Next Step
 				</button>
