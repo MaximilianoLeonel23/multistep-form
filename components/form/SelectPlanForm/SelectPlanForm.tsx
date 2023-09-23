@@ -1,12 +1,11 @@
 import React from 'react';
-import arcadeIcon from '@/assets/images/icon-arcade.svg';
-import advancedIcon from '@/assets/images/icon-advanced.svg';
-import proIcon from '@/assets/images/icon-pro.svg';
-import Image from 'next/image';
-import { useFormStore } from '@/store/useFormStore';
+import { plans } from './plansData';
+import { useFormSteps, useFormStore } from '@/store/useFormStore';
 import PlanCard from './PlanCard';
+
 const SelectPlanForm: React.FC = () => {
-	const { durationOfPlan, setDurationOfPlan } = useFormStore();
+	const { typeOfPlan, durationOfPlan, setDurationOfPlan } = useFormStore();
+	const { currentStep, setCurrentStep } = useFormSteps();
 	const handleDurationOfPlan = () => {
 		if (durationOfPlan === 'monthly') {
 			setDurationOfPlan('yearly');
@@ -16,26 +15,13 @@ const SelectPlanForm: React.FC = () => {
 		console.log(durationOfPlan);
 	};
 
-	const plans = [
-		{
-			label: 'Arcade',
-			pricePerMonth: '$9/mo',
-			pricePerYear: '$90/yr',
-			icon: arcadeIcon,
-		},
-		{
-			label: 'Advanced',
-			pricePerMonth: '$12/mo',
-			pricePerYear: '$120/yr',
-			icon: advancedIcon,
-		},
-		{
-			label: 'Pro',
-			pricePerMonth: '$15/mo',
-			pricePerYear: '$150/yr',
-			icon: proIcon,
-		},
-	];
+	const handlePlansForm = () => {
+		console.log(durationOfPlan, typeOfPlan);
+		if (durationOfPlan && typeOfPlan) {
+			setCurrentStep(2);
+		}
+	};
+
 	return (
 		<div className='h-full flex flex-col justify-between'>
 			<div className='flex flex-col gap-8'>
@@ -79,8 +65,22 @@ const SelectPlanForm: React.FC = () => {
 			</div>
 
 			<div className='flex justify-between items-center'>
-				<button className='bg-none border-none text-primary-marine-blue font-medium'>Go back</button>
-				<button className=' bg-primary-marine-blue text-white py-3 px-6 rounded-lg w-fit font-medium'>
+				<button
+					onClick={() => {
+						if (currentStep === 1) {
+							setCurrentStep(0);
+						} else {
+							return;
+						}
+					}}
+					className='bg-none border-none text-neutro-cool-gray font-medium'
+				>
+					Go back
+				</button>
+				<button
+					onClick={handlePlansForm}
+					className=' bg-primary-marine-blue text-white py-3 px-6 rounded-lg w-fit font-medium'
+				>
 					Next Step
 				</button>
 			</div>

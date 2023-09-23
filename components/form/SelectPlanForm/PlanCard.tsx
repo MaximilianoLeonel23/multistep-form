@@ -1,19 +1,23 @@
+import { useFormStore } from '@/store/useFormStore';
 import Image from 'next/image';
 import React from 'react';
+import { Plan } from '@/types/types';
 
 interface Props {
-	plan: {
-		icon: string;
-		label: string;
-		pricePerMonth: string;
-		pricePerYear: string;
-	};
+	plan: Plan;
 	durationOfPlan: string;
 }
+
 const PlanCard: React.FC<Props> = ({ plan, durationOfPlan }) => {
-	const { icon, label, pricePerMonth, pricePerYear } = plan;
+	const { icon, label, pricePerMonth, pricePerYear, id } = plan;
+	const { typeOfPlan, setTypeOfPlan } = useFormStore();
 	return (
-		<article className='flex flex-col justify-between items-start p-3 border border-neutro-light-gray rounded-lg'>
+		<article
+			onClick={() => setTypeOfPlan(id)}
+			className={`flex flex-col justify-between items-start p-3 ${
+				typeOfPlan === id && 'bg-neutro-alabaster'
+			} border border-neutro-light-gray rounded-lg cursor-pointer hover:border-primary-purplish-blue`}
+		>
 			<Image src={icon} alt='arcade plan icon' />
 			<div className='flex flex-col gap-1'>
 				<h4 className='text-primary-marine-blue font-medium text-sm'>{label}</h4>

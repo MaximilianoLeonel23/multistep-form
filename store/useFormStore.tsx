@@ -20,7 +20,7 @@ export const useFormStore = create<FormStore>(set => {
 		name: '',
 		email: '',
 		phone: '',
-		typeOfPlan: '',
+		typeOfPlan: 'arcade',
 		durationOfPlan: 'monthly',
 		addOns: [],
 		setName: (newName: string) => set({ name: newName }),
@@ -39,7 +39,7 @@ interface FormSteps {
 
 export const useFormSteps = create<FormSteps>(set => {
 	return {
-		currentStep: 1,
+		currentStep: 0,
 		setCurrentStep: newStep => set({ currentStep: newStep }),
 	};
 });
