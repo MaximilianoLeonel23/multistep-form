@@ -1,9 +1,9 @@
-import { FormStore, useFormSteps, useFormStore } from '@/store/useFormStore';
+import { useFormSteps, useFormStore } from '@/store/useFormStore';
 import React from 'react';
 
 interface Props {
 	successful: boolean;
-	setSuccessful: React.Dispatch<React.SetStateAction<boolean>>;
+	setSuccessful: (state: boolean) => void;
 }
 const SummaryButton: React.FC<Props> = ({ successful, setSuccessful }) => {
 	const { name, email, phone, durationOfPlan, addOns, typeOfPlan, resetForm } = useFormStore();

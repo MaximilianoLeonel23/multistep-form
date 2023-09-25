@@ -57,12 +57,12 @@ export const useFormSteps = create<FormSteps>(set => {
 
 interface Successful {
 	successful: boolean;
-	setSuccessful: () => void;
+	setSuccessful: (state: boolean) => void;
 }
 
 export const useSuccessful = create<Successful>(set => {
 	return {
 		successful: false,
-		setSuccessful: () => set({ successful: true }),
+		setSuccessful: (state: boolean) => set({ successful: state }),
 	};
 });
