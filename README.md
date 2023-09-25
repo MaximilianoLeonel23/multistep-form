@@ -1,34 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Multistep Form
+
+![Responsive Design](https://img.shields.io/badge/Responsive-Yes-brightgreen.svg)
+![Next.js](https://img.shields.io/badge/Next.js-10.2.0-blue.svg)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-2.2.19-blueviolet.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.5.4-blue.svg)
+![Zustand](https://img.shields.io/badge/Zustand-4.3.1-success.svg)
+
+This is a multistep form project created as a frontend challenge for [Frontend Mentor](https://www.frontendmentor.io/challenges). It allows users to go through a series of steps, providing information as they progress through each step. The project is built using Next.js, Tailwind CSS, TypeScript, and Zustand for state management.
+
+## Demo
+
+You can view a live demo of the project [here](https://your-demo-link-here.com).
+
+## Technologies Used
+
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Zustand](https://github.com/pmndrs/zustand)
+
+## Features
+
+- Responsive design: The form is optimized for various screen sizes and devices.
+- Multistep process: Users can easily navigate through multiple steps to complete the form.
+- State management: Zustand is used for efficient state management, ensuring a smooth user experience.
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+   ```bash
+   git clone https://github.com/your-username/multistep-form.git
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
