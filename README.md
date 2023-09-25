@@ -12,7 +12,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-4.5.4-blue.svg)
 ![Zustand](https://img.shields.io/badge/Zustand-4.3.1-success.svg)
 
-This is a multistep form project created as a frontend challenge for [Frontend Mentor](https://www.frontendmentor.io/challenges). It allows users to go through a series of steps, providing information as they progress through each step. The project is built using Next.js, Tailwind CSS, TypeScript, and Zustand for state management.
+This is a multistep form project created as a frontend challenge for [Frontend Mentor](https://www.frontendmentor.io/challenges). It allows users to go through a series of steps, providing information as they progress through each step. The form allow people buy a kind of gamer's plans. The project is built using Next.js, Tailwind CSS, TypeScript, and Zustand for state management.
 
 ## Demo
 
