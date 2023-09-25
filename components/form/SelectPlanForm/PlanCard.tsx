@@ -18,7 +18,7 @@ const PlanCard: React.FC<Props> = ({ plan, durationOfPlan }) => {
 	return (
 		<article
 			onClick={handlePlan}
-			className={`flex flex-col justify-between items-start p-3 ${
+			className={`flex gap-4 md:flex-col md:justify-between items-start p-3 ${
 				typeOfPlan.id === id && 'bg-neutro-alabaster'
 			} border border-neutro-light-gray rounded-lg cursor-pointer hover:border-primary-purplish-blue`}
 		>

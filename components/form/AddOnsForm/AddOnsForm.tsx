@@ -3,8 +3,9 @@ import React from 'react';
 import { addons } from './addons';
 import AddOnCard from './AddOnCard';
 import { AddOn } from '@/types/types';
+import ButtonBack from '../ButtonBack';
+import ButtonNext from '../ButtonNext';
 const AddOnsForm = () => {
-	const { currentStep, setCurrentStep } = useFormSteps();
 	const { durationOfPlan, addOns, setAddOns } = useFormStore();
 
 	const handleAddOns = (addOn: AddOn) => {
@@ -18,11 +19,6 @@ const AddOnsForm = () => {
 		}
 	};
 
-	const handleAddOnsForm = () => {
-		if (durationOfPlan && addOns.length >= 0) {
-			setCurrentStep(3);
-		}
-	};
 	return (
 		<div className='h-full flex flex-col justify-between'>
 			<div className='flex flex-col gap-8'>
@@ -44,25 +40,9 @@ const AddOnsForm = () => {
 				</div>
 			</div>
 
-			<div className='flex justify-between items-center'>
-				<button
-					onClick={() => {
-						if (currentStep === 2) {
-							setCurrentStep(1);
-						} else {
-							return;
-						}
-					}}
-					className='bg-none border-none text-neutro-cool-gray hover:text-primary-marine-blue font-medium'
-				>
-					Go back
-				</button>
-				<button
-					onClick={handleAddOnsForm}
-					className='bg-primary-marine-blue text-white py-2 px-6 rounded-lg w-fit font-medium'
-				>
-					Next Step
-				</button>
+			<div className='hidden md:flex justify-between items-center'>
+				<ButtonBack step={2} />
+				<ButtonNext step={2} />
 			</div>
 		</div>
 	);

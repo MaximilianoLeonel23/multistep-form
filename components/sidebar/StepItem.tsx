@@ -18,7 +18,7 @@ const StepItem: React.FC<Props> = ({ label, step }) => {
 			>
 				{step + 1}
 			</div>
-			<div className='flex flex-col'>
+			<div className='hidden md:flex flex-col'>
 				<span className='text-neutro-light-gray text-xs'>STEP {step + 1}</span>
 				<p className='text-white font-medium text-sm'>{label.toUpperCase()}</p>
 			</div>

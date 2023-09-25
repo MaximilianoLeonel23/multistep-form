@@ -1,7 +1,7 @@
 import { AddOn, Plan } from '@/types/types';
 import { create } from 'zustand';
 
-interface FormStore {
+export interface FormStore {
 	name: string;
 	email: string;
 	phone: string;
@@ -14,6 +14,7 @@ interface FormStore {
 	setTypeOfPlan: (newTypeOfPlan: Plan) => void;
 	setDurationOfPlan: (newDurationOfPlan: string) => void;
 	setAddOns: (newAddOns: AddOn[]) => void;
+	resetForm: () => void;
 }
 
 export const useFormStore = create<FormStore>(set => {
@@ -30,6 +31,15 @@ export const useFormStore = create<FormStore>(set => {
 		setTypeOfPlan: (newTypeOfPlan: Plan) => set({ typeOfPlan: newTypeOfPlan }),
 		setDurationOfPlan: (newDurationOfPlan: string) => set({ durationOfPlan: newDurationOfPlan }),
 		setAddOns: (newAddOns: AddOn[]) => set({ addOns: newAddOns }),
+		resetForm: () =>
+			set(state => ({
+				name: '',
+				email: '',
+				phone: '',
+				typeOfPlan: { label: '', pricePerMonth: 0, pricePerYear: 0, id: '', icon: '' },
+				durationOfPlan: 'monthly',
+				addOns: [],
+			})),
 	};
 });
 
@@ -42,5 +52,17 @@ export const useFormSteps = create<FormSteps>(set => {
 	return {
 		currentStep: 0,
 		setCurrentStep: newStep => set({ currentStep: newStep }),
+	};
+});
+
+interface Successful {
+	successful: boolean;
+	setSuccessful: () => void;
+}
+
+export const useSuccessful = create<Successful>(set => {
+	return {
+		successful: false,
+		setSuccessful: () => set({ successful: true }),
 	};
 });

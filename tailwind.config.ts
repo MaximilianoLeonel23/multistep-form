@@ -24,6 +24,9 @@ const config: Config = {
 					white: 'hsl(0, 0%, 100%)',
 				},
 			},
+			dropShadow: {
+				soft: '0px 2px 8px rgba(0, 0, 0, 0.05)',
+			},
 		},
 	},
 	plugins: [require('@tailwindcss/forms')],

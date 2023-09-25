@@ -1,15 +1,11 @@
 'use client';
-import { useFormSteps, useFormStore } from '@/store/useFormStore';
+import { useFormStore } from '@/store/useFormStore';
 import React from 'react';
+import ButtonNext from '../ButtonNext';
 
 const BasicForm = () => {
 	const { name, email, phone, setName, setEmail, setPhone } = useFormStore();
-	const { currentStep, setCurrentStep } = useFormSteps();
-	const handleBasicData = () => {
-		if (name && email && phone) {
-			setCurrentStep(currentStep + 1);
-		}
-	};
+
 	return (
 		<div className='h-full flex flex-col justify-between'>
 			<div className='flex flex-col gap-8'>
@@ -67,13 +63,8 @@ const BasicForm = () => {
 					</div>
 				</div>
 			</div>
-			<div className='flex justify-end'>
-				<button
-					onClick={handleBasicData}
-					className=' bg-primary-marine-blue text-white py-2 px-6 rounded-lg w-fit'
-				>
-					Next Step
-				</button>
+			<div className='hidden md:flex justify-end'>
+				<ButtonNext step={0} />
 			</div>
 		</div>
 	);

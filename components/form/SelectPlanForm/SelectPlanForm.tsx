@@ -2,22 +2,16 @@ import React from 'react';
 import { plans } from './plansData';
 import { useFormSteps, useFormStore } from '@/store/useFormStore';
 import PlanCard from './PlanCard';
+import ButtonBack from '../ButtonBack';
+import ButtonNext from '../ButtonNext';
 
 const SelectPlanForm: React.FC = () => {
-	const { typeOfPlan, durationOfPlan, setDurationOfPlan } = useFormStore();
-	const { currentStep, setCurrentStep } = useFormSteps();
+	const { durationOfPlan, setDurationOfPlan } = useFormStore();
 	const handleDurationOfPlan = () => {
 		if (durationOfPlan === 'monthly') {
 			setDurationOfPlan('yearly');
 		} else {
 			setDurationOfPlan('monthly');
-		}
-		console.log(durationOfPlan);
-	};
-
-	const handlePlansForm = () => {
-		if (durationOfPlan && typeOfPlan) {
-			setCurrentStep(2);
 		}
 	};
 
@@ -30,7 +24,7 @@ const SelectPlanForm: React.FC = () => {
 						You have the option of monthly or yearly billing.
 					</p>
 				</div>
-				<div className='min-h-[9rem] grid grid-cols-3 gap-2'>
+				<div className='min-h-[9rem] flex flex-col md:grid grid-cols-3 gap-2'>
 					{plans.map((plan, idx) => {
 						return <PlanCard key={idx} plan={plan} durationOfPlan={durationOfPlan} />;
 					})}
@@ -63,25 +57,9 @@ const SelectPlanForm: React.FC = () => {
 				</div>
 			</div>
 
-			<div className='flex justify-between items-center'>
-				<button
-					onClick={() => {
-						if (currentStep === 1) {
-							setCurrentStep(0);
-						} else {
-							return;
-						}
-					}}
-					className='bg-none border-none text-neutro-cool-gray hover:text-primary-marine-blue font-medium'
-				>
-					Go back
-				</button>
-				<button
-					onClick={handlePlansForm}
-					className=' bg-primary-marine-blue text-white py-2 px-6 rounded-lg w-fit font-medium'
-				>
-					Next Step
-				</button>
+			<div className='hidden md:flex justify-between items-center'>
+				<ButtonBack step={1} />
+				<ButtonNext step={1} />
 			</div>
 		</div>
 	);

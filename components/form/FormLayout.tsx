@@ -1,10 +1,10 @@
 'use client';
 import React, { useEffect } from 'react';
 import { useFormSteps, useFormStore } from '@/store/useFormStore';
-import BasicForm from './BasicForm';
+import BasicForm from './BasicForm/BasicForm';
 import SelectPlanForm from './SelectPlanForm/SelectPlanForm';
 import AddOnsForm from './AddOnsForm/AddOnsForm';
-import SummaryForm from './SummaryForm';
+import SummaryForm from './SummaryForm/SummaryForm';
 
 const FormLayout = () => {
 	const { currentStep } = useFormSteps();

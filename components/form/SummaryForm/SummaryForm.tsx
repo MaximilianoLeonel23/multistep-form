@@ -1,19 +1,14 @@
 'use client';
-import { useFormSteps, useFormStore } from '@/store/useFormStore';
-import React, { useState } from 'react';
-import Successful from './Successful';
+import { useFormSteps, useFormStore, useSuccessful } from '@/store/useFormStore';
+import React from 'react';
+import Successful from '../Successful';
+import ButtonBack from '../ButtonBack';
+import SummaryButton from './SummaryButton';
 
 const SummaryForm = () => {
-	const { currentStep, setCurrentStep } = useFormSteps();
-	const [successful, setSuccessful] = useState(false);
-	const { name, email, phone, durationOfPlan, addOns, typeOfPlan } = useFormStore();
-
-	const handleSubmit = () => {
-		if (name && email && phone && durationOfPlan && addOns && typeOfPlan) {
-			setSuccessful(true);
-		}
-		return;
-	};
+	const { setCurrentStep } = useFormSteps();
+	const { successful, setSuccessful } = useSuccessful();
+	const { durationOfPlan, addOns, typeOfPlan } = useFormStore();
 
 	const totalBilling =
 		durationOfPlan === 'monthly'
@@ -77,25 +72,9 @@ const SummaryForm = () => {
 				</div>
 			</div>
 
-			<div className='flex justify-between items-center'>
-				<button
-					onClick={() => {
-						if (currentStep === 3) {
-							setCurrentStep(2);
-						} else {
-							return;
-						}
-					}}
-					className='bg-none border-none text-neutro-cool-gray hover:text-primary-marine-blue font-medium'
-				>
-					Go back
-				</button>
-				<button
-					onClick={handleSubmit}
-					className='bg-primary-purplish-blue hover:bg-primary-pastel-blue transition-colors duration-300 text-white py-2 px-6 rounded-lg w-fit font-medium'
-				>
-					Confirm
-				</button>
+			<div className='hidden md:flex justify-between items-center'>
+				<ButtonBack step={3} />
+				<SummaryButton successful={successful} setSuccessful={setSuccessful} />
 			</div>
 		</div>
 	);
